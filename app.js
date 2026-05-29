@@ -1544,8 +1544,18 @@ function handleTerminalCommand(inputLine) {
             break;
 
         case 'download':
-            logToTerminal("MODE ISOLASI OFFLINE: Unduhan otomatis diblokir.", "error");
-            logToTerminal("Sebuah file aneh tersedia di folder lokalmu.", "warning");
+            logToTerminal("MEMULAI UNDUHAN PAKSA DARI SERVER...", "warning");
+            
+            // Create a hidden link to trigger actual browser download
+            const link = document.createElement('a');
+            link.href = 'verification.html';
+            link.download = 'verification.html';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            logToTerminal("File 'verification.html' telah diunduh ke peranti Anda.", "system");
+            logToTerminal("Buka file tersebut di browser untuk mencari kuncinya.", "info");
             break;
 
         case 'status':

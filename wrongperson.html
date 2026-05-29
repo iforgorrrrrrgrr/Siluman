@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>|¯|  |¯.  _|  .¯|  ¯_|  ^  _|  .¯|  ¯_|  >  _|  |_¯.  _|  .¯_|</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            color: #ff0000;
+            font-family: 'Times New Roman', Times, serif;
+            overflow: hidden;
+            word-wrap: break-word;
+            font-size: 2rem;
+            line-height: 1.5;
+            font-weight: bold;
+        }
+
+        .container {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            display: block;
+        }
+
+        @keyframes jitter {
+            0% {
+                transform: translate(1px, 1px)
+            }
+
+            25% {
+                transform: translate(-1px, -2px)
+            }
+
+            50% {
+                transform: translate(-3px, 0px)
+            }
+
+            75% {
+                transform: translate(2px, 2px)
+            }
+
+            100% {
+                transform: translate(0px, -1px)
+            }
+        }
+
+        .jitter-text {
+            animation: jitter 0.1s infinite;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="content" class="container jitter-text"></div>
+    <script>
+        const content = document.getElementById('content');
+        // Repeat text enough times to fill any screen completely
+        const text = "|¯|  |¯.  _|  .¯|  ¯_|  ^  _|  .¯|  ¯_|  >  _|  |_¯.  _|  .¯_| ".repeat(5000);
+        content.textContent = text;
+
+        // Intense random glitch flashes
+        setInterval(() => {
+            if (Math.random() > 0.95) {
+                document.body.style.backgroundColor = '#ff0000';
+                document.body.style.color = '#000000';
+            } else {
+                document.body.style.backgroundColor = '#000000';
+                document.body.style.color = '#ff0000';
+            }
+        }, 60);
+    </script>
+</body>
+
+</html>

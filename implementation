@@ -1,0 +1,10 @@
+SILUMAN ARG Game Files:
+- index.html (Main entry point)
+- style.css (Visual effects & CRT engine)
+- app.js (Web Audio, Canvas & Shell engine)
+- verification.html (Stage 3 offline puzzle file)
+- quiz_faces.png (Observation grid face assets)
+
+Local verification server active on http://localhost:8000.
+To run manually, execute: python -m http.server 8000
+Session lockout reset command: resetProtocol()

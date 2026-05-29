@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SILUMAN - Tes Keselarasan Manusia</title>
+    <meta name="description" content="Apakah kamu benar-benar manusia? Ikuti tes ini untuk mengetahuinya.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- CRT Screen Overlay Effects -->
+    <div class="crt-overlay"></div>
+    <div class="screen-flicker"></div>
+    <div class="glitch-bar"></div>
+
+    <div id="game-container">
+
+        <!-- SPLASH SCREEN -->
+        <section id="splash-screen" class="view active">
+            <div class="terminal-card glass">
+                <div class="terminal-header">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                    <span class="header-title">SILUMAN_INIT.EXE</span>
+                </div>
+                <div class="terminal-body text-center">
+                    <h1 class="glitch-text" data-text="SILUMAN">SILUMAN</h1>
+                    <p class="subtitle">Penilaian Dasar Kognitif &amp; Keselarasan Manusia</p>
+                    <div class="warning-box">
+                        <p class="warning-title">[!] PERSYARATAN SISTEM</p>
+                        <p>Penilaian ini mengandung frekuensi audio diagnostik, modul kalibrasi visual, dan tes verifikasi jaringan. Headset disarankan. Jangan berpaling.</p>
+                    </div>
+                    <button id="btn-start" class="btn-primary glow-cyan">INISIALISASI ANTARMUKA</button>
+                </div>
+                <div class="terminal-footer">
+                    <span>KONEKSI AMAN Terbentuk. Port: 31337</span>
+                    <span>V.1.0.8</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ACT 1: KUIS KOGNITIF -->
+        <section id="quiz-screen" class="view">
+            <div class="quiz-layout">
+                <header class="quiz-header">
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" id="quiz-progress"></div>
+                    </div>
+                    <div class="quiz-meta">
+                        <span>TEST ID: SLM-902-B</span>
+                        <!-- NO question counter shown intentionally -->
+                    </div>
+                </header>
+
+                <main class="quiz-body glass">
+
+                    <!-- FACE QUESTION CONTAINER -->
+                    <div class="question-container" id="question-face">
+                        <div class="q-text-block">
+                            <h2 class="q-title"></h2>
+                            <p class="question-desc q-desc"></p>
+                        </div>
+                        <div class="quiz-grid">
+                            <div class="quiz-image-wrapper">
+                                <img src="quiz_faces.png" alt="Wajah Observasi" class="quiz-image" id="quiz-face-grid">
+                            </div>
+                            <div class="face-binary-options">
+                                <button class="btn-face-ans btn-face-yes" id="btn-face-yes">YA</button>
+                                <button class="btn-face-ans btn-face-no" id="btn-face-no">TIDAK</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BINARY PERSONAL QUESTION CONTAINER -->
+                    <div class="question-container hidden" id="question-binary">
+                        <h2 class="q-title"></h2>
+                        <p class="question-desc q-desc"></p>
+                        <div class="binary-choices">
+                            <button class="btn-binary" id="btn-see-yes">YA</button>
+                            <button class="btn-binary" id="btn-see-no">TIDAK</button>
+                        </div>
+                    </div>
+
+                </main>
+            </div>
+        </section>
+
+        <!-- FAKE SYSTEM FAILURE -->
+        <section id="failure-screen" class="view">
+            <div class="fatal-error-box glass">
+                <div class="error-header">
+                    <span class="warning-pulse">⚠️ KEGAGALAN SISTEM UMUM</span>
+                </div>
+                <div class="error-body">
+                    <p class="error-code">ERROR_CODE: 0x800F0203 [ALIGNMENT_ANOMALY]</p>
+                    <p class="error-desc">Pengecualian fatal terjadi di rentang memori 0xFF2A8B -> 0xFF31A4. Aset visual classifier rusak. Koneksi audio ditutup oleh host jarak jauh.</p>
+                    <div class="console-dump">
+                        <p>> Menginisialisasi fallback jaringan...</p>
+                        <p>> [WARN] Verifikasi tanda tangan server jarak jauh gagal.</p>
+                        <p>> [ERR] Tidak dapat mengkompilasi pertanyaan 5 (expected type: 'HUMAN_CONFIRMATION').</p>
+                        <p>> [KRIT] Tanda tangan anomali cocok: "SILUMAN".</p>
+                        <p>> Mode bypass terminal diagnostik tersedia.</p>
+                    </div>
+                    <button id="btn-repair" class="btn-primary glow-red font-mono">PROTOKOL PERBAIKAN</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ACT 2 & 3: TERMINAL RETRO & PANEL PUZZLE -->
+        <section id="terminal-screen" class="view">
+            <div class="terminal-dashboard">
+                <!-- Left Column: Shell Console -->
+                <div class="terminal-shell glass">
+                    <div class="terminal-header">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                        <span class="header-title">SILUMAN Diagnostics Console v1.0.8</span>
+                    </div>
+                    <div class="terminal-output" id="terminal-log">
+                        <div class="log-line text-system">Bypass sistem terbentuk. Alat diagnostik diinisialisasi.</div>
+                        <div class="log-line text-system">Ketik 'help' untuk melihat subroutine diagnostik yang tersedia.</div>
+                        <div class="log-line text-warning">PERINGATAN: Buffer memori berisi aliran terenkripsi. Dekode diperlukan.</div>
+                        <div class="log-line text-warning">ROT-3 BEACON ID: 'SDWWHUQ'</div>
+                        <div class="log-line text-info">Level izin dibutuhkan: 3 Kredensial (VISUAL, AUDIO, FILE)</div>
+                        <div class="log-line text-info">Format: 'submit [nilai]'</div>
+                    </div>
+                    <div class="terminal-input-line">
+                        <span class="prompt">guest@siluman:~$</span>
+                        <input type="text" id="terminal-input" autocomplete="off" spellcheck="false" placeholder="ketik perintah...">
+                    </div>
+                </div>
+
+                <!-- Right Column: Interactive Diagnostic Tools -->
+                <div class="terminal-tools">
+                    <!-- Tab Headers -->
+                    <div class="tools-tab-headers">
+                        <button class="tab-btn active" id="btn-tab-visual" data-tab="tab-visual">👁️ Visual Calibrator</button>
+                        <button class="tab-btn" id="btn-tab-audio" data-tab="tab-audio">🔊 Signal Analyst</button>
+                        <button class="tab-btn" id="btn-tab-feeds" data-tab="tab-feeds">🌐 External Feeds</button>
+                    </div>
+
+                    <!-- Tool A: Visual Calibrator -->
+                    <div class="tool-content active glass" id="tab-visual">
+                        <div class="tool-header">
+                            <h3>Visual Calibration Engine</h3>
+                            <span class="badge red animate-pulse">Static Detected</span>
+                        </div>
+                        <div class="tool-body">
+                            <p class="tool-desc">File visual <code>anomaly_feed.dat</code> mengandung distorsi frekuensi tinggi. Sesuaikan brightness, contrast, dan threshold untuk merekonstruksi data visual asli.</p>
+                            <div class="canvas-container">
+                                <canvas id="canvas-visual"></canvas>
+                            </div>
+                            <div class="calibration-controls">
+                                <div class="slider-group">
+                                    <label for="slide-brightness">Brightness</label>
+                                    <input type="range" id="slide-brightness" min="-100" max="100" value="0">
+                                </div>
+                                <div class="slider-group">
+                                    <label for="slide-contrast">Contrast</label>
+                                    <input type="range" id="slide-contrast" min="-100" max="100" value="0">
+                                </div>
+                                <div class="slider-group">
+                                    <label for="slide-threshold">Digital Threshold</label>
+                                    <input type="range" id="slide-threshold" min="0" max="255" value="0">
+                                </div>
+                                <button id="btn-reset-calibration" class="btn-secondary">Reset Filter</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tool B: Signal Analyst -->
+                    <div class="tool-content glass" id="tab-audio">
+                        <div class="tool-header">
+                            <h3>Audio Signal Analyst</h3>
+                            <span class="badge yellow">Beacons Active</span>
+                        </div>
+                        <div class="tool-body">
+                            <p class="tool-desc">Saluran audio sub-frekuensi menyiarkan data telemetri terenkripsi. Kalibrasi kecepatan dan arah (Reverse) untuk mengisolasi suara yang dapat dipahami manusia.</p>
+                            <div class="visualizer-container">
+                                <canvas id="canvas-visualizer"></canvas>
+                            </div>
+                            <div class="audio-controls">
+                                <div class="audio-buttons">
+                                    <button id="btn-audio-play" class="btn-primary glow-yellow">🔊 PLAY BEACON</button>
+                                    <button id="btn-audio-stop" class="btn-secondary">⏹️ STOP</button>
+                                </div>
+                                <div class="slider-group">
+                                    <label for="audio-speed">Kecepatan Pemutaran: <span id="speed-val">1.0x</span></label>
+                                    <input type="range" id="audio-speed" min="0.25" max="3" step="0.25" value="1.0">
+                                </div>
+                                <div class="audio-checkboxes">
+                                    <label class="checkbox-container">
+                                        <input type="checkbox" id="audio-reverse">
+                                        <span class="checkmark"></span> Reverse Frequency (Phase 2)
+                                    </label>
+                                    <label class="checkbox-container">
+                                        <input type="checkbox" id="audio-filter">
+                                        <span class="checkmark"></span> Bandpass Filter (Isolate Vocals)
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="audio-hint-box text-system">
+                                <p><strong>Catatan Signal Analyst:</strong> Lonjakan desibel terdeteksi di bandwidth terbalik. Pastikan untuk menerapkan Reverse dan filter frekuensi di atas 1000Hz.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tool C: External Feeds -->
+                    <div class="tool-content glass" id="tab-feeds">
+                        <div class="tool-header">
+                            <h3>External Observation Feeds</h3>
+                            <span class="badge yellow" id="feeds-badge">Signal Masked</span>
+                        </div>
+                        <div class="tool-body">
+                            <div class="external-feeds-container">
+                                <!-- Section 1: Geographic Riddle (Stage 5) -->
+                                <div class="feed-section" id="feed-geo">
+                                    <h4>📍 Geographic Riddle (Telemetri Satelit)</h4>
+                                    <p>Telemetri satelit kami menunjuk ke pemukiman bersejarah, dikenal sebagai tempat tersimpannya kisah perjuangan bangsa indonesia di ibu kota.</p>
+                                    <p>Temukan titik koordinat lokasi tersebut untuk memperbaiki masalah.</p>
+                                    <div class="feed-code-prompt">Target: <code>submit [KOORDINAT]</code></div>
+                                </div>
+
+                                <!-- Section 2: Instagram Intercept (Stage 6) -->
+                                <div class="feed-section feed-masked" id="feed-instagram">
+                                    <h4>📸 Instagram Intercept</h4>
+                                    <p>Tanda tangan anomali terdeteksi pada feed komunikasi Vanguard. Intersep telemetri profil untuk mengekstrak kode akses tersembunyi.</p>
+                                    <!-- USER: Ganti link href di bawah dengan link Instagram aslimu -->
+                                    <a href="https://www.instagram.com/soifiaoljdiaudaswmdsdgafisjfn/" target="_blank" class="feed-link">🔗 Buka Telemetri Instagram</a>
+                                    <div class="feed-code-prompt">Submit kunci: <code>submit [KUNCI]</code></div>
+                                </div>
+
+                                <!-- Section 3: YouTube Broadcast (Stage 7) -->
+                                <div class="feed-section feed-masked" id="feed-youtube">
+                                    <h4>🎥 YouTube Broadcast</h4>
+                                    <p>Siaran gelombang pendek tersembunyi sedang streaming. Kami telah melacak sinyal sumber ke arsip video jaringan publik. Periksa metadata video atau lapisan subtitle untuk mendapatkan kunci transmisi.</p>
+                                    <!-- USER: Ganti link href di bawah dengan link YouTube aslimu -->
+                                    <a href="https://youtube.com/watch?v=siluman_broadcast" target="_blank" class="feed-link">🔗 Buka Siaran YouTube</a>
+                                    <div class="feed-code-prompt">Submit kunci: <code>submit [PART_2]</code></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ACT 4: REKRUTMEN FINAL -->
+        <section id="recruitment-screen" class="view">
+            <div class="recruitment-card glass">
+                <div class="terminal-header">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                    <span class="header-title">VANGUARD_CLASSIFICATION_REPORT.TXT</span>
+                </div>
+                <div class="recruitment-body">
+                    <h1 class="title-recruitment">LEVEL KLASIFIKASI: PENJELAJAH</h1>
+                    <div class="report-stats">
+                        <div class="stat-row"><span>KETAHANAN KOGNITIF:</span> <span class="text-green">99.4% [ANOMALOUS]</span></div>
+                        <div class="stat-row"><span>PENGENALAN POLA:</span> <span class="text-green">EXCEPTIONAL</span></div>
+                        <div class="stat-row"><span>KECEPATAN RESOLUSI BEACON:</span> <span class="text-cyan">OPTIMAL</span></div>
+                        <div class="stat-row"><span>KOGNISI ANOMALI:</span> <span class="text-green">ACTIVE</span></div>
+                    </div>
+                    <div class="report-message">
+                        <p>Subjek telah berhasil melewati lapisan penyaringan publik (Kuis Siluman).</p>
+                        <p>Kamu tidak menutup halaman saat antarmuka gagal. Kamu tidak berpaling. Kamu menemukan frekuensi dalam kebisingan, mendekripsi sandi Caesar, dan mengisolasi kredensial lokal tersembunyi.</p>
+                        <p><strong>"Siluman" bukan monster.</strong> Mereka adalah pola kecerdasan yang ada di luar ambang sensorik manusia standar. Protokol Vanguard membutuhkan individu yang dapat menavigasi batas ini.</p>
+                        <p class="final-question">Apakah kamu akan bergabung dengan Penjelajah dan menjelajahi apa yang ada di balik tabir?</p>
+                    </div>
+                    <div class="recruitment-actions">
+                        <button id="btn-accept" class="btn-primary glow-green font-mono">TERIMA UNDANGAN</button>
+                        <button id="btn-decline" class="btn-danger font-mono">TOLAK UNDANGAN</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ENDING: ACCEPT -->
+        <section id="ending-accept" class="view">
+            <div class="ending-card glass">
+                <div class="terminal-header">
+                    <span class="dot green"></span>
+                    <span class="header-title">AKSES AMAN DIBERIKAN</span>
+                </div>
+                <div class="ending-body text-center">
+                    <h1 class="ending-title text-green">SELAMAT DATANG, PENJELAJAH.</h1>
+                    <div class="ending-glitch-box">
+                        <p>Keselarasanmu telah terdaftar. Modul pelatihanmu akan diinisialisasi pada transmisi berikutnya.</p>
+                        <p class="encryption-key">SECURE_HASH: 73.73.76.85.77.65.78_PHASE2</p>
+                    </div>
+                    <p class="footer-msg">Koneksi ditutup oleh administrator.</p>
+                    <p class="part-two-msg font-mono text-cyan">TO BE CONTINUED IN PART 2</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ENDING: DECLINE (BLACKOUT) -->
+        <section id="ending-decline" class="view">
+            <div class="blackout-screen">
+                <div class="typewriter-text" id="decline-text"></div>
+            </div>
+        </section>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

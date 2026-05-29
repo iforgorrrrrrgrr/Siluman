@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>VERIFICATION HANDSHAKE — SILUMAN LOCAL NODE</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+        :root {
+            --green: #33ff33;
+            --red: #ff3333;
+            --cyan: #00f0ff;
+            --amber: #ffb000;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: #000;
+            color: #33ff33;
+            font-family: 'Share Tech Mono', monospace;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0,0,0,0.15) 0px,
+                rgba(0,0,0,0.15) 1px,
+                transparent 1px,
+                transparent 2px
+            );
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 700px;
+            padding: 20px;
+        }
+
+        .header {
+            border: 1px solid var(--green);
+            padding: 15px 20px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(51,255,51,0.2), inset 0 0 20px rgba(51,255,51,0.05);
+            animation: border-pulse 3s infinite alternate;
+        }
+
+        @keyframes border-pulse {
+            from { box-shadow: 0 0 10px rgba(51,255,51,0.1); }
+            to   { box-shadow: 0 0 30px rgba(51,255,51,0.4); }
+        }
+
+        .header h1 {
+            font-size: 0.9rem;
+            letter-spacing: 4px;
+            color: var(--green);
+            text-shadow: 0 0 10px var(--green);
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            font-size: 0.7rem;
+            color: rgba(51,255,51,0.5);
+            letter-spacing: 2px;
+        }
+
+        .log-block {
+            font-size: 0.82rem;
+            line-height: 2;
+            margin-bottom: 30px;
+        }
+
+        .log-block .line { display: block; }
+        .log-block .sys  { color: rgba(51,255,51,0.6); }
+        .log-block .warn { color: var(--amber); }
+        .log-block .err  { color: var(--red); }
+        .log-block .cyan { color: var(--cyan); }
+
+        .decrypt-box {
+            border: 1px solid rgba(51,255,51,0.3);
+            padding: 20px;
+            margin-bottom: 30px;
+            background: rgba(51,255,51,0.02);
+            position: relative;
+        }
+
+        .decrypt-box h2 {
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            color: var(--amber);
+            margin-bottom: 15px;
+            text-shadow: 0 0 8px var(--amber);
+        }
+
+        .hex-grid {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            gap: 6px;
+            margin-bottom: 20px;
+        }
+
+        .hex-cell {
+            font-size: 0.72rem;
+            color: rgba(51,255,51,0.3);
+            text-align: center;
+            padding: 4px 2px;
+            border: 1px solid rgba(51,255,51,0.07);
+            cursor: default;
+            transition: all 0.2s ease;
+            user-select: none;
+        }
+
+        .hex-cell.active {
+            color: var(--cyan);
+            border-color: var(--cyan);
+            background: rgba(0,240,255,0.08);
+            text-shadow: 0 0 6px var(--cyan);
+            animation: cell-flicker 1.5s infinite alternate;
+        }
+
+        @keyframes cell-flicker {
+            from { opacity: 0.7; }
+            to   { opacity: 1; }
+        }
+
+        .decode-result {
+            border-top: 1px solid rgba(51,255,51,0.2);
+            padding-top: 15px;
+            font-size: 0.85rem;
+            color: rgba(51,255,51,0.5);
+            letter-spacing: 1px;
+        }
+
+        .decode-result span.revealed {
+            color: var(--cyan);
+            font-size: 1.1rem;
+            letter-spacing: 4px;
+            text-shadow: 0 0 12px var(--cyan);
+            animation: text-pulse 2s infinite alternate;
+        }
+
+        @keyframes text-pulse {
+            from { text-shadow: 0 0 5px var(--cyan); }
+            to   { text-shadow: 0 0 20px var(--cyan), 0 0 40px rgba(0,240,255,0.4); }
+        }
+
+        .instruction-box {
+            border: 1px dashed rgba(255,176,0,0.3);
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.8;
+            color: rgba(255,176,0,0.7);
+            margin-bottom: 30px;
+        }
+
+        .instruction-box strong { color: var(--amber); }
+
+        .fingerprint {
+            font-size: 0.65rem;
+            color: rgba(51,255,51,0.12);
+            letter-spacing: 1px;
+            text-align: center;
+            word-break: break-all;
+            line-height: 1.8;
+        }
+
+        .creepy-quote {
+            font-size: 0.75rem;
+            color: rgba(255,51,51,0.4);
+            text-align: center;
+            letter-spacing: 3px;
+            margin-bottom: 25px;
+            animation: fade-red 4s infinite alternate;
+        }
+        @keyframes fade-red {
+            from { opacity: 0.2; }
+            to   { opacity: 0.6; }
+        }
+
+        .footer-note {
+            margin-top: 20px;
+            font-size: 0.7rem;
+            color: rgba(51,255,51,0.15);
+            text-align: center;
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>VERIFICATION HANDSHAKE &mdash; SILUMAN LOCAL NODE</h1>
+            <p>OFFLINE MODE &nbsp;|&nbsp; PORT: 0x0000 &nbsp;|&nbsp; KONEKSI: LOOPBACK</p>
+        </div>
+
+        <p class="creepy-quote">// kamu seharusnya tidak menemukan file ini. tapi kamu menemukannya.</p>
+
+        <div class="log-block">
+            <span class="line sys">&gt; [00:00:01] Menginisialisasi handshake lokal...</span>
+            <span class="line sys">&gt; [00:00:02] Mencari certificate chain... <span style="color:var(--red)">GAGAL</span></span>
+            <span class="line warn">&gt; [00:00:03] PERINGATAN: Verifikasi jarak jauh tidak tersedia.</span>
+            <span class="line sys">&gt; [00:00:04] Beralih ke mode dekripsi lokal.</span>
+            <span class="line err">&gt; [00:00:05] [ERR] Aset visual classifier hilang dari buffer memori.</span>
+            <span class="line sys">&gt; [00:00:06] Memuat tabel hash lokal... <span style="color:var(--green)">OK</span></span>
+            <span class="line cyan">&gt; [00:00:07] HASH DITEMUKAN. Mendekripsi.....</span>
+        </div>
+
+        <div class="decrypt-box">
+            <h2>// TABEL HASH CLEARANCE &mdash; STAGE 4</h2>
+            <div class="hex-grid" id="hex-grid"></div>
+            <div class="decode-result">
+                HASH CLEARANCE STAGE 4 &rarr; &nbsp;
+                <span class="revealed" id="code-reveal">__________</span>
+            </div>
+        </div>
+
+        <div class="instruction-box">
+            <strong>[!] INSTRUKSI UNTUK OPERATOR:</strong><br>
+            Kode clearance di atas adalah kunci untuk Stage 4.<br>
+            Kembali ke terminal diagnostik SILUMAN dan ketik:<br><br>
+            <strong style="color:var(--cyan); letter-spacing:2px;">submit RESEARCHER</strong><br><br>
+            Kata ini bukan kebetulan. Kamu adalah salah satu yang mencarinya.
+        </div>
+
+        <div class="fingerprint">
+            4e4f44455f494400 &nbsp; 53494c554d414e00 &nbsp; 52455345415243484552<br>
+            4c4f43414c5f48414e445348414b45 &nbsp; 46494c455f49443a 5645524946494341<br>
+            53544147455f343a 434c454152414e43 455f4c4556454c3a 5245534541524348 4552
+        </div>
+
+        <p class="footer-note">// file ini dihasilkan secara lokal &mdash; tidak ada salinan di server</p>
+    </div>
+
+    <script>
+        const fakeHex = [
+            '4F','E9','A1','B3','7C','D0','F5','2A',
+            '8B','C4','6E','91','3D','0F','A8','5C',
+            'B2','7A','D3','1E','4B','E6','8D','2C',
+            'A0','9F','5A','C3','A7','6B','1D','4F',
+            '0E','8A','C2','B5','3E','D1','2F','9B',
+            '6C','4D','A3','1B','5E','D0','7A','B4',
+            'EC','3F','6D','FF','01','9A','B7','C5',
+            'E2','4C','8F','A6','D9','1C','7B','33'
+        ];
+
+        // Indices and characters that spell RESEARCHER
+        const keyIndices = [0, 9, 17, 20, 27, 36, 48, 57, 58, 59];
+        const keyChars   = ['R','E','S','E','A','R','C','H','E','R'];
+
+        const grid = document.getElementById('hex-grid');
+        fakeHex.forEach((val, i) => {
+            const cell = document.createElement('div');
+            cell.className = 'hex-cell';
+            const idx = keyIndices.indexOf(i);
+            if (idx !== -1) {
+                cell.textContent = keyChars[idx];
+                cell.classList.add('active');
+            } else {
+                cell.textContent = val;
+            }
+            grid.appendChild(cell);
+        });
+
+        // Reveal code with typing effect
+        const codeEl = document.getElementById('code-reveal');
+        const target = 'RESEARCHER';
+        let revealed = '';
+        let i = 0;
+
+        setTimeout(() => {
+            const interval = setInterval(() => {
+                if (i < target.length) {
+                    revealed += target[i];
+                    codeEl.textContent = revealed + '_'.repeat(target.length - revealed.length);
+                    i++;
+                } else {
+                    codeEl.textContent = target;
+                    clearInterval(interval);
+                }
+            }, 120);
+        }, 1500);
+    </script>
+</body>
+</html>

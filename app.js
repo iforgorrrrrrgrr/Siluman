@@ -85,7 +85,7 @@ const quizDatabase = {
         },
         {
             type: 'face',
-            imgSrc: 'Stage1_2.png',
+            imgSrc: 'stage1_2.png',
             title: 'Rekaman CCTV menunjukkan entitas ini berdiri diam selama 4 jam.',
             desc: 'Apakah ini siluman?',
             glitchImage: true,
@@ -102,7 +102,7 @@ const quizDatabase = {
         },
         {
             type: 'face',
-            imgSrc: 'Stage1_3.png',
+            imgSrc: 'stage1_3.png',
             title: 'Wajah ini terlihat berbeda dari gambar sebelumnya.',
             desc: 'Apakah sesuatu telah berubah?',
             glitchImage: false,
@@ -137,7 +137,7 @@ const quizDatabase = {
         },
         {
             type: 'face',
-            imgSrc: 'Stage2_2.png',
+            imgSrc: 'stage2_2.png',
             title: 'Wajah ini muncul di setiap rekaman yang kami analisis.',
             desc: 'Apakah menurutmu ini manusia biasa?',
             glitchImage: false,
@@ -154,7 +154,7 @@ const quizDatabase = {
     3: [
         {
             type: 'face',
-            imgSrc: 'Stage3_1.png',
+            imgSrc: 'stage3_1.png',
             title: 'Rekaman ini diambil di rumahmu sendiri.',
             desc: 'Apakah kamu mengenali entitas di wajah ini?',
             glitchImage: true,
@@ -172,7 +172,7 @@ const quizDatabase = {
         },
         {
             type: 'face',
-            imgSrc: 'Stage3_2.png',
+            imgSrc: 'stage3_2.png',
             title: 'Wajah ini menatap langsung ke kamera. Kamera itu di kamarmu.',
             desc: 'Apakah ini benar-benar hanya bayangan?',
             glitchImage: true,
@@ -182,7 +182,7 @@ const quizDatabase = {
     4: [
         {
             type: 'face',
-            imgSrc: 'Stage4.png',
+            imgSrc: 'stage4.png',
             title: 'Foto ini ditemukan di dalam komputer kamu.',
             desc: 'Kamu tidak pernah mengunduhnya. Apakah ini siluman?',
             glitchImage: true,
@@ -201,7 +201,7 @@ const quizDatabase = {
     5: [
         {
             type: 'face',
-            imgSrc: 'Stage5.png',
+            imgSrc: 'stage5.png',
             zoomClass: 'face-zoom-5',
             title: 'Wajah ini ada di setiap kota yang pernah kamu kunjungi.',
             desc: 'Mereka mengikutimu. Apakah ini siluman?',
@@ -213,7 +213,7 @@ const quizDatabase = {
     6: [
         {
             type: 'face',
-            imgSrc: 'Stage6.png',
+            imgSrc: 'stage6.png',
             zoomClass: 'face-zoom-6',
             title: 'KONEKSI RUSAK. SINYAL MENGGANGGU DATA VISUAL.',
             desc: 'Apakah kamu masih ingin melanjutkan?',
@@ -225,7 +225,7 @@ const quizDatabase = {
     7: [
         {
             type: 'face',
-            imgSrc: 'Stage7.png',
+            imgSrc: 'stage7.png',
             zoomClass: 'face-zoom-7',
             title: 'APAKAH ITU MASIH ADA DI SANA? (LEVEL KRITIS 7)',
             desc: 'RUNTIME CLASSIFIER GAGAL. PILIH UNTUK MENGHENTIKAN PROTOKOL.',
